@@ -1,0 +1,727 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Luxx4Less — You can get less price of fine gold and luxurious jeweleries ." />
+  <title>Luxx4Less — Gold & Jewelry</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: system-ui, sans-serif;
+      color: #fff;
+      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+        url("Logo.jpg") center/cover no-repeat fixed;
+      background-attachment: fixed;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .brand {
+      font-size: clamp(1.7rem, 2.5vw, 2.8rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav a {
+      color: #f9f3df;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero {
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 0 4rem;
+    }
+
+    .hero h2 {
+      font-size: clamp(2.5rem, 5vw, 4.25rem);
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    .hero p {
+      max-width: 34rem;
+      color: #f4ecd7;
+      margin: 1.5rem 0 2rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #d4af37;
+      color: #111;
+      padding: 0.95rem 1.6rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    .products .grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 1.2rem;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 1rem;
+      padding: 1.1rem;
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card .img {
+      width: 100%;
+      min-height: 150px;
+      overflow: hidden;
+      border-radius: 0.9rem;
+      margin-bottom: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      display: grid;
+      place-items: center;
+    }
+
+    .card .img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card h4,
+    .card p,
+    .card .btn {
+      color: #fff;
+    }
+
+    .card h4 {
+      font-size: 1rem;
+      margin: 0 0 0.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .card p.price {
+      font-size: 0.95rem;
+      margin: 0 0 1rem;
+      color: #d4af37;
+      font-weight: 700;
+    }
+
+    .card .btn {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      font-size: 0.95rem;
+      border-radius: 0.9rem;
+    }
+
+    .about,
+    .contact {
+      background: rgba(0, 0, 0, 0.55);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    label,
+    .price {
+      font-weight: 500;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 0.9rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      margin-top: 0.5rem;
+      outline: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .site-footer {
+      padding: 1.5rem 0;
+      text-align: center;
+      margin-top: 2rem;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .support-info {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      padding: 1rem 1.1rem;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .support-info p {
+      margin: 0.45rem 0;
+      line-height: 1.6;
+      color: #f4ecd7;
+    }
+
+    .support-info strong {
+      color: #d4af37;
+    }
+
+    .chat-support {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 1.25rem 1.2rem;
+      border-radius: 1rem;
+      display: grid;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .chat-support h4 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #d4af37;
+    }
+
+    .chat-support p {
+      margin: 0;
+      color: #f4ecd7;
+      line-height: 1.65;
+    }
+
+    .chat-support .btn {
+      width: fit-content;
+      padding: 0.85rem 1.25rem;
+    }
+
+    .chat-modal {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 60;
+      padding: 1.2rem;
+    }
+
+    .chat-modal[hidden] {
+      display: none;
+    }
+
+    .chat-window {
+      width: min(36rem, 100%);
+      max-height: 80vh;
+      display: grid;
+      gap: 1rem;
+      background: rgba(10, 10, 10, 0.98);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+
+    .chat-window h4 {
+      margin: 0;
+      font-size: clamp(1.1rem, 1.3vw, 1.25rem);
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+
+    .chat-messages {
+      display: grid;
+      gap: 0.8rem;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      max-height: 40vh;
+    }
+
+    .message {
+      border-radius: 1rem;
+      padding: 0.85rem 1rem;
+      line-height: 1.5;
+      font-size: 0.95rem;
+      max-width: 80%;
+      white-space: pre-wrap;
+    }
+
+    .message.agent {
+      background: rgba(212, 175, 55, 0.14);
+      color: #f4ecd7;
+      justify-self: start;
+    }
+
+    .message.user {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      justify-self: end;
+    }
+
+    #chatForm {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    #chatInput {
+      min-height: 4.5rem;
+      resize: vertical;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 0.9rem;
+      color: #fff;
+      padding: 0.9rem 1rem;
+    }
+
+    #chatInput::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .chat-note {
+      margin: 0;
+      color: rgba(244, 236, 215, 0.9);
+      font-size: 0.95rem;
+    }
+
+    .chat-note a {
+      color: #d4af37;
+      text-decoration: underline;
+    }
+
+    .chat-window .close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .chat-window {
+      position: relative;
+    }
+
+    .chat-window .btn {
+      width: fit-content;
+      padding: 0.85rem 1.25rem;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(0, 0, 0, 0.72);
+      padding: 1.5rem;
+      z-index: 50;
+    }
+
+    .modal[hidden] {
+      display: none;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 30rem;
+      width: 100%;
+      background: rgba(15, 15, 15, 0.98);
+      padding: 2rem;
+      border-radius: 1rem;
+      color: #fff;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .close {
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">Luxx4Less</h1>
+      <nav class="nav">
+        <a href="products.html">Products Catalog</a>
+        <a href="#products">Featured</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2>Exquisite Gold & Timeless Jewellery</h2>
+        <p>Less prices pieces, ethically sourced of luxurious jewellery, exceptional value.</p>
+        <a class="btn" href="#products">Explore Collection</a>
+      </div>
+    </section>
+
+    <section id="products" class="container products">
+      <h3>Featured Pieces</h3>
+      <div class="grid">
+        <article class="card" data-name="18k Gold Ring w/Moissa Diamond Stone" data-price="P10,000" data-desc="18k saudi gold and diamond piece">
+          <div class="img" aria-hidden="true"><img src="Moissa-Diamond-ring.jpg" alt="18k Gold Ring w/Moissa Diamond Stone"></div>
+          <h4>Classic Gold Ring</h4>
+          <p class="price">P10,000</p>
+          <button class="btn open-product" data-name="Custom Necklace" data-price="P10,000" data-desc="Design your bespoke piece with our expert jewelers" data-url="https://www.facebook.com/luxx4less.phgoldsanddiamonds/photos">View Portfolio</button>
+          </div>
+        </article>
+
+        <article class="card" data-name="Diamond Pendant" data-price="$1,299" data-desc="14k gold with solitaire diamond">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Diamond Pendant"></div>
+          <h4>Diamond Pendant</h4>
+          <p class="price">$1,299</p>
+           <button class="btn open-product" data-name="Custom Necklace" data-price="P10,000" data-desc="Design your bespoke piece with our expert jewelers" data-url="https://www.facebook.com/luxx4less.phgoldsanddiamonds/photos">View Portfolio</button>
+          </div>
+        </article>
+
+        <article class="card" data-name="Pearl Earrings" data-price="$349" data-desc="Freshwater pearls, gold posts">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Pearl Earrings"></div>
+          <h4>Pearl Earrings</h4>
+          <p class="price">$349</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold Bracelet" data-price="$799" data-desc="Comfort-fit 22k gold bangle">
+          <div class="img" aria-hidden="true"><img src="bracelet-sale.jpg" alt="Gold Bangle"></div>
+          <h4>Gold Bangle</h4>
+          <p class="price">P20,000</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Emerald Ring" data-price="$899" data-desc="Vintage-style emerald cut">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Emerald Ring"></div>
+          <h4>Emerald Ring</h4>
+          <p class="price">$899</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Custom Necklace" data-price="P10,000" data-desc="Design your bespoke piece" data-url="https://www.facebook.com/photo.php?fbid=1369421505291854&amp;set=pb.100066720531622.-2207520000&amp;type=3">
+          <div class="img" aria-hidden="true"><img src="gold-sale.jpg" alt="Custom Necklace"></div>
+          <h4>Custom Necklace</h4>
+          <p class="price">P10,000</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold Hoop Earrings" data-price="P2,499" data-desc="Classic hoop earrings in polished gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Gold Hoop Earrings"></div>
+          <h4>Gold Hoop Earrings</h4>
+          <p class="price">P2,499</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Rose Gold Bracelet" data-price="P3,299" data-desc="Delicate rose gold bracelet with sparkle">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Rose Gold Bracelet"></div>
+          <h4>Rose Gold Bracelet</h4>
+          <p class="price">P3,299</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Sapphire Pendant" data-price="P4,899" data-desc="Blue sapphire set in 14k gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Sapphire Pendant"></div>
+          <h4>Sapphire Pendant</h4>
+          <p class="price">P4,899</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Platinum Wedding Band" data-price="P8,700" data-desc="Sleek platinum band for special occasions">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Platinum Wedding Band"></div>
+          <h4>Platinum Wedding Band</h4>
+          <p class="price">P8,700</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Citrine Ring" data-price="P1,850" data-desc="Warm citrine ring with gold setting">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Citrine Ring"></div>
+          <h4>Citrine Ring</h4>
+          <p class="price">P1,850</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Emerald Studs" data-price="P2,150" data-desc="Emerald studs with shimmer accents">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Emerald Studs"></div>
+          <h4>Emerald Studs</h4>
+          <p class="price">P2,150</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Pearl Choker" data-price="P3,999" data-desc="Elegant pearl choker with gold clasp">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Pearl Choker"></div>
+          <h4>Pearl Choker</h4>
+          <p class="price">P3,999</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Men's Cufflinks" data-price="P1,250" data-desc="Sophisticated gold cufflinks for formal wear">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Men's Cufflinks"></div>
+          <h4>Men's Cufflinks</h4>
+          <p class="price">P1,250</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Diamond Tennis Bracelet" data-price="P12,500" data-desc="Sparkling diamond bracelet in luxe gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Diamond Tennis Bracelet"></div>
+          <h4>Diamond Tennis Bracelet</h4>
+          <p class="price">P12,500</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Moonstone Ring" data-price="P2,299" data-desc="Dreamy moonstone ring with detailed band">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Moonstone Ring"></div>
+          <h4>Moonstone Ring</h4>
+          <p class="price">P2,299</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Aqua Marine Pendant" data-price="P4,450" data-desc="Cool aquamarine pendant with gold frame">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Aqua Marine Pendant"></div>
+          <h4>Aqua Marine Pendant</h4>
+          <p class="price">P4,450</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Pearl Drop Earrings" data-price="P2,750" data-desc="Pearl drops with gold accents">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Pearl Drop Earrings"></div>
+          <h4>Pearl Drop Earrings</h4>
+          <p class="price">P2,750</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Opal Halo Ring" data-price="P3,199" data-desc="Opal halo ring with fine gold band">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Opal Halo Ring"></div>
+          <h4>Opal Halo Ring</h4>
+          <p class="price">P3,199</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Black Onyx Pendant" data-price="P1,950" data-desc="Bold black onyx pendant in gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Black Onyx Pendant"></div>
+          <h4>Black Onyx Pendant</h4>
+          <p class="price">P1,950</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Turquoise Bracelet" data-price="P2,750" data-desc="Turquoise bracelet with braided gold chain">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Turquoise Bracelet"></div>
+          <h4>Turquoise Bracelet</h4>
+          <p class="price">P2,750</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold Charm Necklace" data-price="P3,150" data-desc="Personalized charm necklace in gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Gold Charm Necklace"></div>
+          <h4>Gold Charm Necklace</h4>
+          <p class="price">P3,150</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Amethyst Drop Earrings" data-price="P1,980" data-desc="Purple amethyst drop earrings in gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Amethyst Drop Earrings"></div>
+          <h4>Amethyst Drop Earrings</h4>
+          <p class="price">P1,980</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold Anklet" data-price="P1,120" data-desc="Delicate 14k gold anklet"
+>
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Gold Anklet"></div>
+          <h4>Gold Anklet</h4>
+          <p class="price">P1,120</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Ruby Ring" data-price="P5,200" data-desc="Deep ruby ring in classic setting">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Ruby Ring"></div>
+          <h4>Ruby Ring</h4>
+          <p class="price">P5,200</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold Station Necklace" data-price="P2,650" data-desc="Minimal station necklace in gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Gold Station Necklace"></div>
+          <h4>Gold Station Necklace</h4>
+          <p class="price">P2,650</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Quartz Pendant" data-price="P1,720" data-desc="Clear quartz pendant with gold bail">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Quartz Pendant"></div>
+          <h4>Quartz Pendant</h4>
+          <p class="price">P1,720</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold Link Chain" data-price="P3,850" data-desc="Bold link chain necklace in gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Gold Link Chain"></div>
+          <h4>Gold Link Chain</h4>
+          <p class="price">P3,850</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Turquoise Ring" data-price="P2,100" data-desc="Bright turquoise ring with gold band">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Turquoise Ring"></div>
+          <h4>Turquoise Ring</h4>
+          <p class="price">P2,100</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold Beaded Bracelet" data-price="P1,680" data-desc="Beaded bracelet finished in lustrous gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Gold Beaded Bracelet"></div>
+          <h4>Gold Beaded Bracelet</h4>
+          <p class="price">P1,680</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Pearl Ring" data-price="P2,200" data-desc="Single pearl ring with gold band">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Pearl Ring"></div>
+          <h4>Pearl Ring</h4>
+          <p class="price">P2,200</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold ID Bracelet" data-price="P2,500" data-desc="Customizable gold ID bracelet">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Gold ID Bracelet"></div>
+          <h4>Gold ID Bracelet</h4>
+          <p class="price">P2,500</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Opal Stud Earrings" data-price="P1,780" data-desc="Opal stud earrings with a gold finish">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Opal Stud Earrings"></div>
+          <h4>Opal Stud Earrings</h4>
+          <p class="price">P1,780</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold Bar Necklace" data-price="P2,050" data-desc="Simple gold bar necklace for every day">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Gold Bar Necklace"></div>
+          <h4>Gold Bar Necklace</h4>
+          <p class="price">P2,050</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Sapphire Studs" data-price="P2,320" data-desc="Sapphire stud earrings in classic gold">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Sapphire Studs"></div>
+          <h4>Sapphire Studs</h4>
+          <p class="price">P2,320</p>
+          <button class="btn open-product">View</button>
+        </article>
+
+        <article class="card" data-name="Gold Pearl Bracelet" data-price="P3,320" data-desc="Pearl bracelet with gold accents">
+          <div class="img" aria-hidden="true"><img src="Logo.jpg" alt="Gold Pearl Bracelet"></div>
+          <h4>Gold Pearl Bracelet</h4>
+          <p class="price">P3,320</p>
+          <button class="btn open-product">View</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="container about">
+      <h3>About Luxx4Less</h3>
+      <p>We craft fine gold and jewellery with attention to quality, ethical sourcing, and beautiful design. Visit our store or contact us for custom orders.</p>
+    </section>
+
+    <section id="contact" class="container contact">
+      <h3>Support & Contact</h3>
+      <div class="support-info">
+        <p>Need help with orders, custom designs, or product questions? All customer concerns are sent automatically to our support email.</p>
+        <p><strong>Support email:</strong> <a href="mailto:jp.gemparo.cmm@gmail.com">jp.gemparo.cmm@gmail.com</a></p>
+        <p>No email app is needed; just submit the form and your concern will be delivered to support.</p>
+      </div>
+      <form id="contactForm" action="https://formsubmit.co/jp.gemparo.cmm@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Luxx4Less support request">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <label>
+          Name
+          <input type="text" name="name" id="name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" id="email" required>
+        </label>
+        <label>
+          Message
+          <textarea name="message" id="message" rows="4" required></textarea>
+        </label>
+        <button class="btn" type="submit">Send Message</button>
+        <p id="formMsg" class="muted" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Luxx4Less — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="productModal" class="modal" hidden>
+    <div class="modal-content">
+      <button id="closeModal" class="close">×</button>
+      <h4 id="modalName"></h4>
+      <p id="modalDesc"></p>
+      <p id="modalPrice" class="price"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

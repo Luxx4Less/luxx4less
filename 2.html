@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Luxx4Less Product Catalog — Fine gold and diamond jewelries." />
+  <title>Products — Luxx4Less</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: system-ui, sans-serif;
+      color: #fff;
+      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("Logo.jpg") center/cover no-repeat fixed;
+      background-attachment: fixed;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .brand {
+      font-size: clamp(1.7rem, 2.5vw, 2.8rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav a {
+      color: #f9f3df;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: #d4af37;
+    }
+
+    header {
+      padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    main {
+      padding: 2rem 0;
+      min-height: calc(100vh - 200px);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin: 2rem 0 1rem;
+    }
+
+    .category {
+      margin: 3rem 0;
+    }
+
+    .category h2 {
+      font-size: 1.8rem;
+      color: #d4af37;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .products-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      margin-bottom: 2rem;
+    }
+
+    .product-card {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px rgba(212, 175, 55, 0.15);
+    }
+
+    .product-card .img {
+      width: 100%;
+      min-height: 240px;
+      overflow: hidden;
+      border-radius: 1rem;
+      margin-bottom: 1.25rem;
+      background: rgba(255, 255, 255, 0.05);
+      display: grid;
+      place-items: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-card h3 {
+      font-size: 1.25rem;
+      margin: 1rem 0 0.5rem;
+      color: #f9f3df;
+    }
+
+    .product-card p {
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .price {
+      font-weight: 700;
+      color: #d4af37;
+      font-size: 1.3rem;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #d4af37;
+      color: #111;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(212, 175, 55, 0.2);
+      color: #d4af37;
+      border: 1px solid #d4af37;
+      padding: 0.6rem 1.5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn.active {
+      background: #d4af37;
+      color: #111;
+    }
+
+    .filter-btn:hover {
+      background: #d4af37;
+      color: #111;
+    }
+
+    .site-footer {
+      padding: 1.5rem 0;
+      text-align: center;
+      margin-top: 2rem;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(0, 0, 0, 0.72);
+      padding: 1.5rem;
+      z-index: 50;
+    }
+
+    .modal[hidden] {
+      display: none;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 35rem;
+      width: 100%;
+      background: rgba(15, 15, 15, 0.98);
+      padding: 2rem;
+      border-radius: 1rem;
+      color: #fff;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .close {
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    <form action="send-email.php" method="POST">
+    <input type="text" name="name" required placeholder="Name">
+    <input type="email" name="email" required placeholder="Email">
+    <textarea name="message" required placeholder="Message"></textarea>
+    <button type="submit">Send</button>
+</form>
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 class="brand" style="margin: 0;">Luxx4Less</h1>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Our Product Collection</h1>
+      <p style="text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 2rem;">
+        Discover our exquisite selection of fine gold and diamond jewelries
+      </p>
+
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterCategory('all')">All Products</button>
+        <button class="filter-btn" onclick="filterCategory('gold')">Gold</button>
+        <button class="filter-btn" onclick="filterCategory('diamond')">Diamonds</button>
+      </div>
+
+      <!-- Gold Section -->
+      <div class="category" data-category="gold">
+        <h2>✨ Gold Jewelries</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="img"><img src="Moissa-Diamond-ring.jpg" alt="MOISSANITE DIAMOND RING"></div>
+            <h3>MOISSANITE DIAMOND RING</h3>
+            <p>18k Saudi Gold with Moissanite Stone/p>
+            <p class="price">P7999</p>
+            <button class="btn open-product" data-name="MOISSANITE DIAMOND RING" data-price="P7999" data-url="https://www.facebook.com/photo.php?fbid=1363244339242904&set=pb.100066720531622.-2207520000&type=3">View Details</button>
+          </div>
+
+          <div class="product-card">
+            <div class="img"><img src="bangle-sale.jpg" alt="Gold Bangle"></div>
+            <h3>Gold Bangle</h3>
+            <p>Comfort-fit 22k gold bangle</p>
+            <p class="price">P20,000</p>
+            <button class="btn open-product" data-name="Gold Bangle" data-price="P20,000" data-url="https://www.facebook.com/photo.php?fbid=1368794125354592&set=pb.100066720531622.-2207520000&type=3">View Details</button>
+          </div>
+
+          <div class="product-card">
+            <div class="img"><img src="Logo.jpg" alt="Gold Earrings"></div>
+            <h3>Gold Earrings</h3>
+            <p>Delicate 14k gold studs</p>
+            <p class="price">$349</p>
+            <button class="btn open-product" data-name="Gold Earrings" data-price="$349" data-desc="Delicate 14k gold studs with secure posts">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diamond Section -->
+      <div class="category" data-category="diamond">
+        <h2>💎 Diamond Jewelries</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="img"><img src="Logo.jpg" alt="Diamond Pendant"></div>
+            <h3>Diamond Pendant</h3>
+            <p>14k gold with solitaire diamond</p>
+            <p class="price">$1,299</p>
+            <button class="btn open-product" data-name="Diamond Pendant" data-price="$1,299" data-desc="14k gold with solitaire diamond, GIA certified">View Details</button>
+          </div>
+
+          <div class="product-card">
+            <div class="img"><img src="Logo.jpg" alt="Diamond Ring"></div>
+            <h3>Emerald Ring</h3>
+            <p>Vintage-style emerald cut diamond</p>
+            <p class="price">$899</p>
+            <button class="btn open-product" data-name="Emerald Ring" data-price="$899" data-desc="Vintage-style emerald cut diamond in 18k gold">View Details</button>
+          </div>
+
+          <div class="product-card">
+            <div class="img"><img src="Logo.jpg" alt="Pearl & Diamond Earrings"></div>
+            <h3>Pearl & Diamond Earrings</h3>
+            <p>Freshwater pearls with diamond accents</p>
+            <p class="price">$649</p>
+            <button class="btn open-product" data-name="Pearl & Diamond Earrings" data-price="$649" data-desc="Freshwater pearls with diamond accents, gold posts">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Section -->
+      <div class="category" data-category="all">
+        <h2>🎨 Custom Creations</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="img"><img src="gold-sale.jpg" alt="Custom Necklace"></div>
+            <h3>Custom Necklace</h3>
+            <p>Design your bespoke piece</p>
+            <p class="price">P10,000</p>
+            <button class="btn open-product" data-name="Custom Necklace" data-price="P10,000" data-desc="Design your bespoke piece with our expert jewelers" data-url="https://www.facebook.com/photo.php?fbid=1369421505291854&amp;set=pb.100066720531622.-2207520000&amp;type=3">View Portfolio</button>
+          </div>
+
+          <div class="product-card">
+            <div class="img"><img src="Logo.jpg" alt="Custom Ring"></div>
+            <h3>Custom Ring Design</h3>
+            <p>Create your perfect ring</p>
+            <p class="price">From $600</p>
+            <button class="btn open-product" data-name="Custom Ring Design" data-price="From $600" data-desc="Work with our jewelers to create your perfect custom ring">View Details</button>
+          </div>
+
+          <div class="product-card">
+            <div class="img"><img src="Logo.jpg" alt="Custom Bracelet"></div>
+            <h3>Custom Bracelet</h3>
+            <p>Personalized luxury bracelet</p>
+            <p class="price">From $800</p>
+            <button class="btn open-product" data-name="Custom Bracelet" data-price="From $800" data-desc="Personalized luxury bracelet tailored to your style">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Luxx4Less — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="productModal" class="modal" hidden>
+    <div class="modal-content">
+      <button id="closeModal" class="close">×</button>
+      <h2 id="modalName"></h2>
+      <p id="modalDesc"></p>
+      <p id="modalPrice" class="price"></p>
+    </div>
+  </div>
+
+  <script>
+    // Product modal functionality
+    document.querySelectorAll('.open-product').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const customUrl = btn.getAttribute('data-url');
+
+        if (customUrl) {
+          window.open(customUrl, '_blank');
+          return;
+        }
+
+        const name = btn.getAttribute('data-name');
+        const price = btn.getAttribute('data-price');
+        const desc = btn.getAttribute('data-desc');
+
+        document.getElementById('modalName').textContent = name;
+        document.getElementById('modalPrice').textContent = price;
+        document.getElementById('modalDesc').textContent = desc;
+        document.getElementById('productModal').hidden = false;
+      });
+    });
+
+    // Close modal
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('productModal').hidden = true;
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('productModal').addEventListener('click', (e) => {
+      if (e.target.id === 'productModal') {
+        document.getElementById('productModal').hidden = true;
+      }
+    });
+
+    // Close modal on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('productModal');
+        if (!modal.hidden) {
+          modal.hidden = true;
+        }
+      }
+    });
+
+    // Filter functionality
+    function filterCategory(category) {
+      // Update button states
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      // Show/hide categories
+      document.querySelectorAll('.category').forEach(cat => {
+        const catType = cat.getAttribute('data-category');
+        if (category === 'all' || catType === category || catType === 'all') {
+          cat.style.display = 'block';
+        } else {
+          cat.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
